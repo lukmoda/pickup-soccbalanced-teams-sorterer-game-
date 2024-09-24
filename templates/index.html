@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Team Balancer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="center-align">Soccer Team Balancer</h1>
+        </header>
+
+        <form id="teamForm" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="col s6">
+                        <label>
+                            <input type="radio" name="inputType" value="manual" checked class="with-gap">
+                            <span>Manual Input</span>
+                        </label>
+                    </div>
+                    <div class="col s6">
+                        <label>
+                            <input type="radio" name="inputType" value="csv" class="with-gap">
+                            <span>Import CSV</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="manualInput" class="row">
+                <div id="players" class="col s12">
+                </div>
+                <div class="left-align">
+                    <button type="button" class="btn waves-effect waves-light" onclick="addRow()">Add Player</button>
+                </div>
+            </div>
+            <div id="csvInput" class="row" style="display: none;">
+                <div class="file-field input-field col s12">
+                    <div class="btn waves-effect waves-light">
+                        <span>File</span>
+                        <input type="file" name="csvFile">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload CSV file">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="team-count col s6">
+                    <label for="teamCount">Number of Teams:</label>
+                    <input type="number" name="teamCount" min="1" max="10" value="4" required>
+                </div>
+                <div class="team-count col s6">
+                    <button type="button" class="btn waves-effect waves-light" onclick="submitForm()">Generate Teams</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="teams-section" style="display: none;">
+            <h2 class="center-align">Generated Teams</h2>
+            <div id="teams"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
